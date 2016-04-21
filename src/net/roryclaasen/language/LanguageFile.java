@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LanguageFile {
+
 	private String filePath;
 
 	private boolean compiled = true;
@@ -45,7 +46,7 @@ public class LanguageFile {
 					try {
 						throw new LanguageFormatNotExcepted("(" + lineNumber + ") " + line);
 					} catch (LanguageFormatNotExcepted e) {
-						e.printStackTrace();
+						if (LangUtil.debug) e.printStackTrace();
 					}
 				}
 			}
@@ -69,5 +70,9 @@ public class LanguageFile {
 
 	public int getCount() {
 		return stringCount;
+	}
+
+	public String getPath() {
+		return filePath;
 	}
 }

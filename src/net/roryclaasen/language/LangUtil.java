@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LangUtil {
+
 	private static Map<String, String> hardCodeStrings = new HashMap<String, String>();
 	private static Map<String, String> fileStrings = new HashMap<String, String>();
 
 	private static LanguageFile file;
 
-	public static String get(String key)  {
+	protected static boolean debug = false;
+
+	public static String get(String key) {
 		if (hardCodeStrings.containsKey(key)) return hardCodeStrings.get(key);
 		if (fileStrings.containsKey(key)) return fileStrings.get(key);
 		try {
@@ -38,7 +41,7 @@ public class LangUtil {
 	}
 
 	private static void read() throws IOException {
-		if(file == null) throw new NullPointerException("No language file set");
+		if (file == null) throw new NullPointerException("No language file set");
 		clear();
 		fileStrings.putAll(file.read());
 	}
@@ -54,5 +57,13 @@ public class LangUtil {
 
 	public static void clearHardCodedStrings() {
 		hardCodeStrings.clear();
+	}
+
+	public static void setDebug(boolean debug) {
+		LangUtil.debug = debug;
+	}
+
+	public static boolean getDebug() {
+		return debug;
 	}
 }
