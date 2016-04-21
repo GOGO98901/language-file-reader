@@ -1,4 +1,4 @@
-package net.roryclaasen.test;
+package net.roryclaasen.language.test;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import net.roryclaasen.language.LanguageFile;
 
 public class Bootstrap {
 	public static void main(String[] args) {
-		LanguageFile file = new LanguageFile("src/net/roryclaasen/test/en_UK.lang").notCompiled();
+		LanguageFile file = new LanguageFile("src/net/roryclaasen/language/test/en_UK.lang").notCompiled();
 		try {
 			LangUtil.setLanguageFile(file);
 		} catch (IOException e) {
@@ -25,7 +25,7 @@ public class Bootstrap {
 		 * Testing... 1 2 3
 		 */
 
-		LanguageFile resource = new LanguageFile("net/roryclaasen/test/en_UK2.lang");
+		LanguageFile resource = new LanguageFile("net/roryclaasen/language/test/en_UK2.lang");
 		try {
 			LangUtil.setLanguageFile(resource);
 		} catch (IOException e) {
