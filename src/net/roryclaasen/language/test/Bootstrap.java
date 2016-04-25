@@ -8,12 +8,15 @@ import net.roryclaasen.language.LanguageFile;
 public class Bootstrap {
 	public static void main(String[] args) {
 		LanguageFile file = new LanguageFile("src/net/roryclaasen/language/test/en_UK.lang").notCompiled();
+		// System.out.println("Loadded with " + LangUtil.getErrorCount() + " error(s)");
+		LangUtil.setLanguageFile(file);
 		try {
-			LangUtil.setLanguageFile(file);
+			LangUtil.readLanguageFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		sleep();
+		System.out.println("Loadded with " + LangUtil.getErrorCount() + " error(s)");
 		System.out.println(LangUtil.get("test.1"));
 		System.out.println(LangUtil.get("test.2"));
 		System.out.println(LangUtil.get("test.3"));
@@ -27,11 +30,12 @@ public class Bootstrap {
 
 		LanguageFile resource = new LanguageFile("net/roryclaasen/language/test/en_UK2.lang");
 		try {
-			LangUtil.setLanguageFile(resource);
-		} catch (IOException e) {
+			LangUtil.setLanguageFileAndRead(resource);
+		}  catch (IOException e) {
 			e.printStackTrace();
 		}
 		sleep();
+		System.out.println("Loadded with " + LangUtil.getErrorCount() + " error(s)");
 		System.out.println(LangUtil.get("test2.1"));
 		System.out.println(LangUtil.get("test2.2"));
 		System.out.println(LangUtil.get("test2.3"));/*

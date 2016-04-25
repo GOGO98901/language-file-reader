@@ -19,14 +19,18 @@ public class LangUtil {
 		try {
 			throw new NoLanguageKeyFoundException(key);
 		} catch (NoLanguageKeyFoundException e) {
-			e.printStackTrace();
+			if (debug) e.printStackTrace();
 		}
 		return null;
 	}
 
-	public static void setLanguageFile(LanguageFile file) throws IOException {
+	public static void setLanguageFile(LanguageFile file) {
 		LangUtil.file = file;
-		read();
+	}
+
+	public static void setLanguageFileAndRead(LanguageFile file) throws IOException {
+		setLanguageFile(file);
+		readLanguageFile();
 	}
 
 	public static void addHardcodeString(String key, String phrase) throws KeyAlreadyExistsException {
@@ -40,7 +44,7 @@ public class LangUtil {
 		if (hardCodeStrings.containsKey(key)) hardCodeStrings.remove(key);
 	}
 
-	private static void read() throws IOException {
+	public static void readLanguageFile() throws IOException {
 		if (file == null) throw new NullPointerException("No language file set");
 		clear();
 		fileStrings.putAll(file.read());
@@ -63,7 +67,19 @@ public class LangUtil {
 		LangUtil.debug = debug;
 	}
 
-	public static boolean getDebug() {
+	public static boolean isDebug() {
 		return debug;
+	}
+
+	public static int getErrorCount() {
+		if (file == null) {
+			try {
+				throw new NullPointerException("No language file set");
+			} catch (Exception e) {
+				if (debug) e.printStackTrace();
+				return 1;
+			}
+		}
+		return file.getErrorCount();
 	}
 }
