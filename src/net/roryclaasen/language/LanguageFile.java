@@ -38,6 +38,7 @@ public class LanguageFile {
 			int lineNumber = 0;
 			while ((line = reader.readLine()) != null) {
 				lineNumber++;
+				if (line.startsWith("#")) continue;
 				String[] split = validate(line);
 				if (split != null) {
 					strings.put(split[0], split[1]);
