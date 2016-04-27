@@ -6,20 +6,24 @@ import java.util.Map;
 
 public class LangUtil {
 
+	private static LangSettings settings = new LangSettings();
 	private static Map<String, String> hardCodeStrings = new HashMap<String, String>();
 	private static Map<String, String> fileStrings = new HashMap<String, String>();
 
 	private static LanguageFile file;
 
-	protected static boolean debug = false;
-
 	public static String get(String key) {
-		if (hardCodeStrings.containsKey(key)) return hardCodeStrings.get(key);
-		if (fileStrings.containsKey(key)) return fileStrings.get(key);
+		if (settings.doHardCodeFirst()) {
+			if (hardCodeStrings.containsKey(key)) return hardCodeStrings.get(key);
+			if (fileStrings.containsKey(key)) return fileStrings.get(key);
+		} else {
+			if (fileStrings.containsKey(key)) return fileStrings.get(key);
+			if (hardCodeStrings.containsKey(key)) return hardCodeStrings.get(key);
+		}
 		try {
 			throw new NoLanguageKeyFoundException(key);
 		} catch (NoLanguageKeyFoundException e) {
-			if (debug) e.printStackTrace();
+			if (settings.isDebug()) e.printStackTrace();
 		}
 		return null;
 	}
@@ -46,7 +50,7 @@ public class LangUtil {
 
 	public static void readLanguageFile() throws IOException {
 		if (file == null) throw new NullPointerException("No language file set");
-		clear();
+		if (!settings.keepValuesAfterLoad()) clear();
 		fileStrings.putAll(file.read());
 	}
 
@@ -63,23 +67,19 @@ public class LangUtil {
 		hardCodeStrings.clear();
 	}
 
-	public static void setDebug(boolean debug) {
-		LangUtil.debug = debug;
-	}
-
-	public static boolean isDebug() {
-		return debug;
-	}
-
 	public static int getErrorCount() {
 		if (file == null) {
 			try {
 				throw new NullPointerException("No language file set");
 			} catch (Exception e) {
-				if (debug) e.printStackTrace();
+				if (settings.isDebug()) e.printStackTrace();
 				return 1;
 			}
 		}
 		return file.getErrorCount();
+	}
+
+	public static LangSettings settings() {
+		return settings;
 	}
 }

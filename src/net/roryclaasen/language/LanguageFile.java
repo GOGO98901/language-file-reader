@@ -47,7 +47,7 @@ public class LanguageFile {
 					try {
 						throw new LanguageFormatNotExcepted("(" + lineNumber + ") " + line);
 					} catch (LanguageFormatNotExcepted e) {
-						if (LangUtil.debug) e.printStackTrace();
+						if (LangUtil.settings().isDebug()) e.printStackTrace();
 						errorCount++;
 					}
 				}
