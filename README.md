@@ -11,11 +11,17 @@ This project is licensed under the [MIT license](https://github.com/GOGO98901/la
    Then add the src folder to your project
 
 ## Usage
-The examples given are using the [example lang file](#example-lang-file)
+The examples given are using the [example lang file](#example-lang-file). View the example java file [here](/src/net/roryclaasen/language/test/Bootstrap.java).<br>
 To load the language file use
 ```java
 LanguageFile enUK = new LanguageFile("en_UK.lang");
 LangUtil.setLanguageFile(enUK);
+LangUtil.readLanguageFile();
+```
+or
+```java
+LanguageFile enUK = new LanguageFile("en_UK.lang");
+LangUtil.setLanguageFileAndRead(enUK);
 ```
 and then to print your strings use
 ```java
@@ -30,5 +36,5 @@ LangUtil.addHardcodeString(key, phrase);
 en_UK.lang
 ```
 net.roryclaasen.title=Language File Reader
-test.2=Testing 1 2 3
+test.1.example=Testing 1 2 3
 ```
