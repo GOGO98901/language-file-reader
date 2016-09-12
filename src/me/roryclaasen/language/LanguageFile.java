@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

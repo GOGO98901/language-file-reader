@@ -1,9 +1,9 @@
-package net.roryclaasen.language.test;
+package me.roryclaasen.language.test;
 
 import java.io.IOException;
 
-import net.roryclaasen.language.LangUtil;
-import net.roryclaasen.language.LanguageFile;
+import me.roryclaasen.language.LangUtil;
+import me.roryclaasen.language.LanguageFile;
 
 public class Bootstrap {
 	public static void main(String[] args) {

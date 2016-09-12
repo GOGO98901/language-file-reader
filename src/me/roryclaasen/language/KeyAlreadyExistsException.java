@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 public class KeyAlreadyExistsException extends Exception {
 	private static final long serialVersionUID = 1L;

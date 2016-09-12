@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 public class NoLanguageKeyFoundException extends Exception {
 	private static final long serialVersionUID = 1099183988116117302L;

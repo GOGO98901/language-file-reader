@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 import java.io.IOException;
 import java.util.HashMap;

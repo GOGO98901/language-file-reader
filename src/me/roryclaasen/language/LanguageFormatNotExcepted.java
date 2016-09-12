@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 public class LanguageFormatNotExcepted extends Exception {
 	private static final long serialVersionUID = 5011056946824545565L;

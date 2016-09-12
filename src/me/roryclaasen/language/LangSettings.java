@@ -1,4 +1,4 @@
-package net.roryclaasen.language;
+package me.roryclaasen.language;
 
 public class LangSettings {
 	private boolean hardCodeFirst = true;
